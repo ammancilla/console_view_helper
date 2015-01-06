@@ -12,7 +12,7 @@ Then, require it on your view file:
 ```ruby
 require 'console_view_helper'
 ```
-And optionally include it too:
+And **optionally** include it too:
 ```ruby
 include ConsoleViewHelper
 ```
