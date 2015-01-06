@@ -3,8 +3,6 @@
 # Requires
 require 'io/console'
 require 'colored'
-require 'win32console'
-
 
 module ConsoleViewHelper
 
@@ -151,3 +149,12 @@ end
 
 # - When included call the methods directly
 # input 'username:'
+
+# --- WINDOW USERS ---
+# - In order to use the 'colorize' method you will need the 'win32console' gem.
+
+# - Get it:
+# gem install 'win32console'
+
+# - Require it:
+# require 'win32console'
