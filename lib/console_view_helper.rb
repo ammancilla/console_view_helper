@@ -46,8 +46,8 @@ module ConsoleViewHelper
   end
 
   # Align text
-  def align(text, size, type = :left, append = ' ')
-    case type
+  def align(text, size, direction = :left, append = ' ')
+    case direction
     when :right
       text.rjust(size, append)
     when :center
@@ -68,10 +68,12 @@ module ConsoleViewHelper
   end
 
   # Display a fake loading effect
-  def loading_effect(n = 3, symbol = '.', time = 0.3)
+  def loading_effect(n = 3, opts = {})
+    delay = opts[:delay] || 0.3
+    symbol = opts[:symbol] || '.'
     1.upto(n) do
       print symbol
-      sleep time
+      sleep delay
     end
     nil
   end
@@ -110,7 +112,7 @@ module ConsoleViewHelper
     subtitle = opts[:subtitle]
     base_width = (subtitle && subtitle.length > title.length ? subtitle.length : title.length) + 4
     width = opts[:width] || base_width
-    n = opts[:indent]
+    n = opts[:indent] || 0
     banner = idt(n) + astk(width + 2) + nl
     banner << idt(n) + astk + whites(width) + astk + nl
     banner << idt(n) + astk + align(title, width, :center) + astk + nl
