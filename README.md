@@ -18,13 +18,13 @@ include ConsoleViewHelper
 ```
 
 # Usage
-- When **just required** call the methods from the module name
+- When **just required**, call the methods from the module name
 ```ruby
 ConsoleViewHelper.banner('Gamecher', subtitle: 'play with style', indent: 1)
 ConsoleViewHelper.input 'username:'
 ConsoleViewHelper.hidden_input 'password:'
 ```
-- When **included** call the methods directly
+- When **included**, call the methods directly
 ```ruby
 banner('Gamecher', subtitle: 'play with style', indent: 1)
 input 'username:'
