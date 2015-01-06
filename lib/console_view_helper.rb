@@ -87,7 +87,7 @@ module ConsoleViewHelper
     result
   end
 
-  # Highligh text with color
+  # Highlight text with color
   def colorize(text, status = :normal)
     case status
     when :success
@@ -121,7 +121,7 @@ module ConsoleViewHelper
     banner << idt(n) + astk(width + 2) + nl
   end
 
-  # Read user input
+  # User input
   def input(label = '>>', n = 0)
     printi label + whites, n
     gets.strip.chomp
@@ -137,16 +137,17 @@ module ConsoleViewHelper
   module_function :idt, :astk, :nl, :hyphen, :underscore, :whites, :align, :printi, :putsi, :loading_effect, :explain, :colorize, :banner, :input, :hidden_input
 end
 
-# -------------------------- CONSOLE VIEW HELPERS ------------------------------
-# - Helper methods to create views for the console.
+
+# -------------------------- CONSOLE VIEW HELPER ------------------------------
+# - Helper methods to build simple and clean console application interfaces.
 
 # --- HOW TO USE ---
-# - require and optionaly include the module on your view file
+# - Require and optionally include the module in your view file
 # require 'cosole_view_helper'
 # include ConsoleViewHelper
 
 # - When just required call the methods from the module name
-# ConsoleViewHelper.userinput 'username:'
+# ConsoleViewHelper.input 'username:'
 
 # - When included call the methods directly
-# user_input 'username:'
+# input 'username:'
