@@ -1,2 +1,3 @@
 # Ignore gem related files
 *.gem
+*.gemspec
