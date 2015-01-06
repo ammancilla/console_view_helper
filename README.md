@@ -30,3 +30,15 @@ banner('Gamecher', subtitle: 'play with style', indent: 1)
 input 'username:'
 hidden_input 'password:'
 ```
+
+# Window Users
+In order to use the `colorize` method you will need the `win32console` gem.
+
+Get it:
+```ruby
+gem install 'win32console'
+```
+Then require it:
+```ruby
+require 'win32console'
+```
