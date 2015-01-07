@@ -1,2 +1,3 @@
-# Ignore gem related files
+# Ignore distro related files and folders
+/dist
 *.gem
