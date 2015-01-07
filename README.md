@@ -21,14 +21,14 @@ include ConsoleViewHelper
 - When **just required**, call the methods from the module name
 ```ruby
 ConsoleViewHelper.banner('Gamecher', subtitle: 'play with style', indent: 1)
-ConsoleViewHelper.input 'username:'
-ConsoleViewHelper.hidden_input 'password:'
+username = ConsoleViewHelper.input('username:')
+password = ConsoleViewHelper.hidden_input('password:')
 ```
 - When **included**, call the methods directly
 ```ruby
 banner('Gamecher', subtitle: 'play with style', indent: 1)
-input 'username:'
-hidden_input 'password:'
+username = input('username:')
+password = hidden_input('password:')
 ```
 
 # Window Users
