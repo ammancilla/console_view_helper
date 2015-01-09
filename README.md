@@ -80,7 +80,7 @@ puts ConsoleViewHelper.table([%w(1 2 3 4), %w(Alfonso Nestor Guillermo Danilo), 
 
 2. Login
 
-3. Settings
+3. Exit
 ```
 ```ruby
 # Usage
