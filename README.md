@@ -121,11 +121,11 @@ puts ConsoleViewHelper.ulist(%w(black yellow white))
 ### inputs
 - **Text input**
 ```ruby
-ConsoleViewHelper.input(label = '>>', indentantion = 0)
+ConsoleViewHelper.input(label = '>>', indent = 0)
 ```
 - **Hidden text input** (Typed text will not be visible)
 ```ruby
-ConsoleViewHelper.hidden_input(label = '>>', indentantion = 0)
+ConsoleViewHelper.hidden_input(label = '>>', indent = 0)
 ```
 
 ## Helper Methods
