@@ -129,7 +129,7 @@ ConsoleViewHelper.hidden_input(label = '>>', indentantion = 0)
 ```
 
 ## Helper Methods
-Under construction...
+Description will be here soon...
 
 ## Window Users
 In order to use the `colorize` method you will need the `win32console` gem.
