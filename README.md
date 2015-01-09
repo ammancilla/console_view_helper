@@ -1,4 +1,4 @@
-console_view_helper
+console_view_helper (0.0.2)
 ===================
 
 Set of methods and components I use commonly when building console application interfaces
