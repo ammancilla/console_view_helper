@@ -79,7 +79,7 @@ module ConsoleViewHelper
   end
 
   # Explain the action being performed
-  def explain(doing_txt, done_txt, n = 1, &block)
+  def explain(doing_txt, done_txt = '', n = 1, &block)
     printi doing_txt, n
     loading_effect
     result = block.call
@@ -109,17 +109,80 @@ module ConsoleViewHelper
 
   # Banner
   def banner(title, opts = {})
+    n = opts[:indent] || 0
+    symbol = opts[:symbol] || '*'
     subtitle = opts[:subtitle]
     base_width = (subtitle && subtitle.length > title.length ? subtitle.length : title.length) + 4
     width = opts[:width] || base_width
-    n = opts[:indent] || 0
-    banner = idt(n) + astk(width + 2) + nl
-    banner << idt(n) + astk + whites(width) + astk + nl
-    banner << idt(n) + astk + align(title, width, :center) + astk + nl
-    banner << idt(n) + astk + align(subtitle, width, :center) + astk + nl if subtitle
-    banner << idt(n) + astk + whites(width) + astk + nl
-    banner << idt(n) + astk(width + 2) + nl
+    raise ArgumentError.new("Specified width can't be minor thant #{base_width}. Increase or remove the width value.") if width < base_width
+    banner = idt(n) + (symbol * (width + 2)) + nl
+    banner << idt(n) + symbol + whites(width) + symbol + nl
+    banner << idt(n) + symbol + align(title, width, :center) + symbol + nl
+    banner << idt(n) + symbol + align(subtitle, width, :center) + symbol + nl if subtitle
+    banner << idt(n) + symbol + whites(width) + symbol + nl
+    banner << idt(n) + (symbol * (width + 2)) + nl
   end
+
+  # Table
+  def table(columns, opts = {})
+    raise ArgumentError.new('Pass table columns as an array of arrays') unless columns.is_a?(Array) && columns.select { |item| !item.is_a?(Array) }.empty?
+    # Set options
+    n = opts[:indent] || 0
+    cell_width = opts[:cell_width] || 12
+    cell_separator = opts[:cell_separator] || bar
+    cell_border = opts[:cell_border] || hyphen
+    if opts[:header]
+      opts[:header].each_with_index do |th, i|
+        columns.push [] unless columns[i]
+        columns[i].unshift(th)
+      end
+    end
+    td_width = cell_width - 2
+    tr_width = (cell_width * columns.length) + columns.length + 1
+    
+    # Build table
+    pos, table = 0, ''
+    begin
+      tr_empty_elems = 0
+      tr_str = idt(n) + (cell_border * tr_width) + nl + cell_separator
+      columns.each do |column|
+        td = if column[pos]
+          column[pos]
+        else
+          tr_empty_elems += 1
+          ''
+        end
+        td = align(td[0..td_width], cell_width, :center)
+        tr_str << td + cell_separator 
+      end
+      tr_str << nl
+      table << tr_str if tr_empty_elems != columns.length
+      pos += 1
+    end while tr_empty_elems != columns.length
+    table << idt(n) + (cell_border * tr_width)
+  end
+
+  
+  # List (unordered)
+  def list(items, opts = {})
+    raise ArgumentError.new('Pass list items in an array.') unless items.is_a? Array
+    n = opts[:indent] || 0
+    li_gap = opts[:li_gap] || 1
+    symbol = opts[:symbol] || '•'
+    list = idt(n)
+    items.each_with_index do |li, i|
+      symbol = opts[:ordered] ? "#{i + 1}." : symbol
+      list << symbol + ' ' + li + nl(li_gap) + idt(n)
+    end
+    list
+  end
+  alias_method :ulist, :list
+
+  # Ordered List
+  def olist(items, opts = {})
+    list items, opts.merge(ordered: true)
+  end
+  alias_method :menu, :olist
 
   # User input
   def input(label = '>>', n = 0)
@@ -134,9 +197,23 @@ module ConsoleViewHelper
   end
 
   # --- 
-  module_function :idt, :astk, :nl, :hyphen, :underscore, :whites, :align, :printi, :putsi, :loading_effect, :explain, :colorize, :banner, :input, :hidden_input
+  module_function :idt, :astk, :nl, :hyphen, :underscore, :bar, :whites, :align, :printi, :putsi, :loading_effect, :explain, :colorize, :banner, :menu, :table, :list, :olist, :ulist, :input, :hidden_input
 end
 
+puts "\nCustom Banner\n\n"
+puts ConsoleViewHelper.banner 'Gamecher', subtitle: 'Play with style' , symbol: '*', width: 50
+puts "-" * 20
+puts "\nUnordered\n\n"
+puts ConsoleViewHelper.ulist %w(black yellow white)
+puts "-" * 20
+puts "\nOrdered\n\n"
+puts ConsoleViewHelper.olist %w(first second third)
+puts "-" * 20
+puts "\nMenu\n\n"
+puts ConsoleViewHelper.menu  %w(Register Login Settings), li_gap: 2
+puts "-" * 20
+puts "\nTable\n\n"
+puts ConsoleViewHelper.table [%w(1 2 3 4), %w(Alfonso Nestor Guillermo Danilo), %w(Mancilla Turizo Iguaran), ['22', '', '', '25']], header: %w(ID NAME LASTNAME AGE ADDRESS), cell_width: 14
 
 # -------------------------- CONSOLE VIEW HELPER ------------------------------
 # - Helper methods to build simple and clean console application interfaces.
@@ -160,3 +237,15 @@ end
 
 # - Require it:
 # require 'win32console'
+
+
+# -------------------------- CHANGELOG ------------------------------
+# --- 0.0.3
+# - Minor enhancements
+# Explicit define the desired symbol for the banner
+# - New components
+# list
+# olist (Ordered List)
+# ulist (Unordered List)
+# menu
+# table
