@@ -55,7 +55,7 @@ puts ConsoleViewHelper.banner('Gamecher', subtitle: 'Play with style' , symbol: 
 ### table
 ```
 ----------------------------------------------------------------------------
-|     'ID      |     NAME     |   LASTNAME   |     AGE      |   ADDRESS    |
+|      ID      |     NAME     |   LASTNAME   |     AGE      |   ADDRESS    |
 ----------------------------------------------------------------------------
 |      1       |   Alfonso    |   Mancilla   |      22      |              |
 ----------------------------------------------------------------------------
