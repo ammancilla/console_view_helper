@@ -99,7 +99,7 @@ puts ConsoleViewHelper.menu(%w(Register Login Exit), li_gap: 2)
 ```
 ```ruby
 # Usage
-ConsoleViewHelper.olist(items, opts = {}) # Defaults: { li_gap: 1, symbol: '•',  indent: 0 }
+ConsoleViewHelper.olist(items, opts = {}) # Defaults: { li_gap: 1, indent: 0 }
 
 # Previous example:
 puts ConsoleViewHelper.olist(%w(first second third))
