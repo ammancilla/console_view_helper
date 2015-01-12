@@ -1,4 +1,4 @@
-# console_view_helper (0.0.3)
+# console_view_helper (0.0.4)
 
 The console_view_helper library is used to build clean and beautiful console application interfaces.
 Customizable Components such as **banners**, **tables**, **menus**, **lists**, **text inputs**, **hidden text inputs** and methods as **colorize**,  **putsi**, **printi**, **align**, **explain**, among others, will help you build a good console application interface with **less code** and in **less time**.
