@@ -1,6 +1,7 @@
 # Encoding: utf-8
 
 # Requires
+require 'rbconfig'
 require 'io/console'
 require 'colored'
 
@@ -43,6 +44,11 @@ module ConsoleViewHelper
   # Whitespace n times
   def whites(n = 1)
     ' ' * n
+  end
+
+  # Clear console screen
+  def cls
+    (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/) ? system('cls') : system('clear')
   end
 
   # Align text
