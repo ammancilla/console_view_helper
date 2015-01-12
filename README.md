@@ -1,4 +1,4 @@
-# console_view_helper
+# console_view_helper (0.0.3)
 
 The console_view_helper library is used to build clean and beautiful console application interfaces.
 Customizable Components such as **banners**, **tables**, **menus**, **lists**, **text inputs**, **hidden text inputs** and methods as **colorize**,  **putsi**, **printi**, **align**, **explain**, among others, will help you build a good console application interface with **less code** and in **less time**.
@@ -99,7 +99,7 @@ puts ConsoleViewHelper.menu(%w(Register Login Exit), li_gap: 2)
 ```
 ```ruby
 # Usage
-ConsoleViewHelper.olist(items, opts = {}) # Defaults: { li_gap: 1, symbol: '•',  indent: 0 }
+ConsoleViewHelper.olist(items, opts = {}) # Defaults: { li_gap: 1, indent: 0 }
 
 # Previous example:
 puts ConsoleViewHelper.olist(%w(first second third))
